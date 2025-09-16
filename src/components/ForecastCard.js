@@ -1,6 +1,8 @@
 // src/components/ForecastCard.js
 import React from "react";
 
+import { Toaster , toast  } from "sonner";
+
 /**
  * Draws a sparkline (tiny chart) from forecast values.
  */
@@ -20,56 +22,79 @@ function sparklinePath(values, width = 120, height = 30, padding = 4) {
   return `M${points.join(" L")}`;
 }
 
-export default function ForecastCard({ crop, region, unit, currentPrice, forecast }) {
+export default function ForecastCard({
+  crop,
+  region,
+  unit,
+  currentPrice,
+  forecast,
+}) {
   const sparkPath = sparklinePath(forecast);
   const last = forecast[forecast.length - 1];
   const direction = last >= currentPrice ? "up" : "down";
   const pct = (((last - currentPrice) / (currentPrice || 1)) * 100).toFixed(1);
 
+  const toastFun = () => {
+    toast.warning("Detailed graph & insights for ${crop} are coming soon.");
+  };
+
   return (
-    <article className="card">
-      <div className="card-header">
-        <div>
-          <h3>{crop}</h3>
-          <p className="muted small">{region}</p>
-        </div>
-        <div className="price">
-          <div className="current">{currentPrice}</div>
-          <div className={`delta ${direction}`}>
-            {direction === "up" ? "▲" : "▼"} {Math.abs(pct)}%
+    <>
+      <Toaster position="top-center" expand={true} richColors/>
+      <article className="card">
+        <div className="card-header">
+          <div>
+            <h3>{crop}</h3>
+            <p className="muted small">{region}</p>
+          </div>
+          <div className="price">
+            <div className="current">{currentPrice}</div>
+            <div className={`delta ${direction}`}>
+              {direction === "up" ? "▲" : "▼"} {Math.abs(pct)}%
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="sparklineWrap">
-        <svg viewBox="0 0 120 30" className="spark">
-          <path d={sparkPath} fill="none" stroke="currentColor" strokeWidth="1.5" />
-        </svg>
-        <div className="forecast-value">
-          {last} <span className="unit">{unit}</span>
+        <div className="sparklineWrap">
+          <svg viewBox="0 0 120 30" className="spark">
+            <path
+              d={sparkPath}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+          </svg>
+          <div className="forecast-value">
+            {last} <span className="unit">{unit}</span>
+          </div>
         </div>
-      </div>
 
-      <div className="card-footer">
-        <button
-          className="btn primary"
-          onClick={() =>
-            alert(
-              `Suggestion for ${crop} (${region}): ${
-                last > currentPrice ? "Consider holding for higher price." : "Consider selling now."
-              }`
-            )
-          }
-        >
-          Decision Assist
-        </button>
-        <button
-          className="btn outline"
-          onClick={() => alert(`Detailed graph & insights for ${crop} are coming soon.`)}
-        >
-          More
-        </button>
-      </div>
-    </article>
+        <div className="card-footer">
+          <button
+            className="btn primary"
+            onClick={() =>
+              alert(
+                `Suggestion for ${crop} (${region}): ${
+                  last > currentPrice
+                    ? "Consider holding for higher price."
+                    : "Consider selling now."
+                }`
+              )
+            }
+          >
+            Decision Assist
+          </button>
+          <button
+            className="btn outline"
+            // onClick={() => alert(`Detailed graph & insights for ${crop} are coming soon.`)}
+            onClick={() => toastFun()
+              
+            }
+          >
+            More
+          </button>
+        </div>
+      </article>
+    </>
   );
 }

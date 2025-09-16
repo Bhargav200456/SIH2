@@ -10,6 +10,9 @@ import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
+import { Toaster } from "sonner";
+
+
 const MOCK_FORECAST = [
   { crop: "Wheat", unit: "₹/quintal", currentPrice: 2180, forecast: [2160, 2178, 2185, 2200, 2215, 2230, 2240], region: "Punjab" },
   { crop: "Rice", unit: "₹/quintal", currentPrice: 3200, forecast: [3190, 3180, 3195, 3210, 3225, 3210, 3230], region: "Bihar" },
@@ -30,8 +33,10 @@ export default function App() {
   const regions = ["All regions", "Punjab", "Bihar", "Maharashtra", "Andhra Pradesh", "Karnataka"];
 
   return (
+    
     <Router>
       <Routes>
+    
         {/* Login Page */}
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         
@@ -47,6 +52,7 @@ export default function App() {
                 <Header region={region} setRegion={setRegion} regions={regions} />
                 <main className="container">
                   <Overview />
+                  <Toaster />
                   <section className="grid">
                     {forecasts.map((f) => (
                       <ForecastCard key={`${f.crop}-${f.region}`} {...f} />
