@@ -1,0 +1,127 @@
+/* src/App.css */
+
+/* Basic resets */
+* { box-sizing: border-box; }
+html,body,#root { height:100%; margin:0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#0b2b2f; }
+
+/* App background */
+.app {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  background: linear-gradient(180deg, #f7fbfb 0%, #e9f6f5 100%);
+}
+
+/* Topbar */
+.topbar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 28px;
+  border-bottom:1px solid rgba(11,43,47,0.06);
+  background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+  backdrop-filter: blur(6px);
+}
+
+.brand { display:flex; gap:12px; align-items:center; }
+.brand .leaf { font-size:28px; background:linear-gradient(45deg,#6ccf85,#2fb8b8); padding:10px; border-radius:10px; box-shadow: 0 4px 16px rgba(46,125,50,0.12); }
+.brand h1 { margin:0; font-size:18px; letter-spacing:0.2px; color:#063338; }
+.brand .tag { margin:0; font-size:12px; color:#4f6b6b; }
+
+/* Controls */
+.controls { display:flex; align-items:center; gap:12px; }
+.selectLabel { font-size:13px; color:#2e5b5a; display:flex; flex-direction:column; gap:6px; }
+.selectLabel select {
+  padding:8px 10px;
+  border-radius:8px;
+  border:1px solid #d9efee;
+  background:white;
+  min-width:160px;
+}
+
+/* Main container */
+.container { width:100%; max-width:1100px; margin:28px auto; padding:0 20px; flex:1; }
+
+/* Overview cards */
+.overview { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-bottom:22px; }
+.overview-card {
+  background:linear-gradient(180deg, #ffffff, #f7ffff);
+  padding:16px;
+  border-radius:12px;
+  box-shadow: 0 6px 18px rgba(11,43,47,0.06);
+}
+.overview-card h2 { margin:0 0 6px 0; font-size:15px; color:#093a3a; }
+.muted { color:#4f6b6b; font-size:13px; }
+.small { font-size:12px; }
+
+/* Grid of forecast cards */
+.grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap:16px;
+}
+
+.card {
+  background:linear-gradient(180deg,#ffffff,#f8fffd);
+  border-radius:14px;
+  padding:14px;
+  box-shadow: 0 12px 30px rgba(3,32,32,0.04);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(3,32,32,0.06); }
+
+.card-header { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.card-header h3 { margin:0; font-size:16px; color:#043737; }
+.card-header .small { margin:0; }
+
+.price { text-align:right; }
+.current { font-size:18px; font-weight:700; color:#053535; }
+.delta { font-size:12px; margin-top:6px; display:inline-block; padding:4px 8px; border-radius:999px; font-weight:600; }
+.delta.up { color:#0a7f3f; background:rgba(10,127,63,0.08); }
+.delta.down { color:#b02a2a; background:rgba(176,42,42,0.06); }
+
+.sparklineWrap { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.spark { width:120px; height:30px; display:block; color:#129488; opacity:0.95; }
+.forecast-value { font-weight:700; color:#054c4a; font-size:14px; }
+.unit { font-weight:500; color:#4f6b6b; font-size:12px; margin-left:6px; }
+
+/* Buttons */
+.card-footer { display:flex; gap:10px; margin-top:4px; }
+.btn {
+  padding:8px 12px;
+  border-radius:10px;
+  border:1px solid transparent;
+  cursor:pointer;
+  font-weight:600;
+  font-size:13px;
+}
+.btn.primary {
+  background: linear-gradient(90deg,#2fb8b8,#45c287);
+  color:white;
+  box-shadow: 0 6px 16px rgba(66,185,153,0.14);
+}
+.btn.outline {
+  background:transparent;
+  border:1px solid #d6efee;
+  color:#044646;
+}
+
+/* loading & empty */
+.loading, .empty { grid-column: 1/-1; padding:36px; text-align:center; color:#3c6a69; background:#ffffffaa; border-radius:8px; box-shadow: 0 8px 28px rgba(3,32,32,0.04); }
+
+/* Footer */
+.footer { padding:18px 28px; text-align:center; color:#3d6a6a; font-size:13px; border-top:1px solid rgba(11,43,47,0.04); background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.2)); }
+
+/* responsive */
+@media (max-width:900px) {
+  .overview { grid-template-columns: repeat(2,1fr); }
+}
+
+@media (max-width:640px) {
+  .overview { grid-template-columns: 1fr; }
+  .topbar { padding:12px; }
+  .brand h1 { font-size:16px; }
+}
