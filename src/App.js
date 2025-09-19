@@ -14,8 +14,8 @@ import { Toaster } from "sonner";
 
 
 const MOCK_FORECAST = [
-  { crop: "Wheat", unit: "₹/quintal", currentPrice: 2180, forecast: [2160, 2178, 2185, 2200, 2215, 2230, 2240], region: "Punjab" },
-  { crop: "Rice", unit: "₹/quintal", currentPrice: 3200, forecast: [3190, 3180, 3195, 3210, 3225, 3210, 3230], region: "Bihar" },
+  { crop: "Wheat", unit: "₹/quintal", currentPrice: 21800, forecast: [2160, 2178, 2185, 2200, 2215, 2230, 2240], region: "Punjab" },
+  { crop: "Rice", unit: "₹/quintal", currentPrice: 32000, forecast: [3190, 3180, 3195, 3210, 3225, 3210, 3230], region: "Bihar" },
   { crop: "Maize", unit: "₹/quintal", currentPrice: 1500, forecast: [1490, 1495, 1502, 1505, 1510, 1520, 1525], region: "Maharashtra" },
   { crop: "Rice", unit: "₹/quintal", currentPrice: 1500, forecast: [1485, 1500, 1535, 1525, 1515, 1520, 1525], region: "Andhra Pradesh" },
   { crop: "Ragi", unit: "₹/quintal", currentPrice: 1500, forecast: [1480, 1500, 1525, 1525, 1515, 1520, 1525], region: "Karnataka" },
